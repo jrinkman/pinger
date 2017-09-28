@@ -1,0 +1,38 @@
+﻿<Controls:MetroWindow x:Name="Main" x:Class="pinger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pinger"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        mc:Ignorable="d"
+        Loaded="Main_Loaded"
+        BorderThickness="0" 
+        GlowBrush="Black"
+        ResizeMode="CanResizeWithGrip"
+        Title="pinger" Height="350" Width="580" MinHeight="350" MinWidth="580" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <d3:ChartPlotter x:Name="Plotter" Margin="10,66,10,10" IsEnabled="False">
+            <d3:LineGraph x:Name="lineGraphPing" DataSource="{Binding Data}"/>
+            <d3:HorizontalAxisTitle Content="Number of Pings"/>
+            <d3:VerticalAxisTitle Content="Ping (ms)"/>
+
+        </d3:ChartPlotter>
+        <Controls:NumericUpDown x:Name="numUpDownPingLimit" Margin="0,10,122,0" Value="2500" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Controls:TransitioningContentControl x:Name="transitionStatus" Margin="20,45,20,0" Transition="Normal" Content="Click 'Start' to begin." HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top" />
+        <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="55" Click="buttonStart_Click"/>
+        <CheckBox x:Name="checkBoxAutoRefresh" Content="Auto Refresh At" HorizontalAlignment="Right" Margin="0,14,10,0" VerticalAlignment="Top" Checked="checkBoxAutoRefresh_Checked" IsChecked="True"/>
+        <Button x:Name="buttonRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" Width="55" Click="buttonRefresh_Click"/>
+        <Button x:Name="buttonStop" Content="Stop" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top" Width="55" Click="buttonStop_Click" IsEnabled="False"/>
+        <ComboBox x:Name="pingComboBox" SelectionChanged="pingComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="190,10,0,0" VerticalAlignment="Top" Width="175" SelectedIndex="0">
+            <ComboBoxItem Content="google.com"/>
+            <ComboBoxItem Content="github.com"/>
+            <ComboBoxItem Content="amazon.com"/>
+        </ComboBox>
+    </Grid>
+</Controls:MetroWindow>
